@@ -116,11 +116,9 @@ st.markdown("<h6 class='title'>for more info please contact # 0345-3153330</h6>"
 name = st.text_input("Please enter your full name:")
 email_address = st.text_input("Please enter your email address:")
 phone = st.text_input("Please enter your phone number (optional):")
-ielts_prompt = st.text_input("Ask Anything About IELTS")
-
 sections = ["IELTS", "IELTS Reading", "IELTS Writing", "IELTS Listening", "IELTS Speaking"]
 selected_sections = st.multiselect("Select sections", sections)
-
+ielts_prompt = st.text_input("Ask Anything About IELTS")
 
 if st.button("Generate IELTS Info"):
     if not name or not email_address:
