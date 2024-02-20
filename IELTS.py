@@ -118,6 +118,9 @@ email_address = st.text_input("Please enter your email address:")
 phone = st.text_input("Please enter your phone number (optional):")
 ielts_prompt = st.text_input("Ask Anything About IELTS")
 
+sections = ["IELTS", "IELTS Reading", "IELTS Writing", "IELTS Listening", "IELTS Speaking"]
+selected_sections = st.multiselect("Select sections", sections)
+
 if st.button("Generate IELTS Info"):
     if not name or not email_address:
         st.warning("Name and email address are required.")
@@ -135,7 +138,7 @@ if st.button("Generate IELTS Info"):
                 ielts_prompt = info_generator.generate_content(ielts_prompt)
                 
                 # Check if the generated content is related to IELTS
-                if "IELTS" in ielts_prompt:
+                if any(section in ielts_prompt for section in selected_sections):
                     info_generator.add_heading("IELTS", level=2)
                     info_generator.add_paragraph(ielts_prompt.strip())
 
@@ -143,7 +146,7 @@ if st.button("Generate IELTS Info"):
                     st.subheader("Generated IELTS Content")
                     st.markdown(ielts_content, unsafe_allow_html=True)
                 else:
-                    st.warning("Your data is not related to IELTS.")
+                    st.warning("Your data is not related to selected sections.")
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
 
