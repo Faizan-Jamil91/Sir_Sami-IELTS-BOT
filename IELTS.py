@@ -137,7 +137,7 @@ if st.button("Generate IELTS Info"):
                 ielts_prompt = info_generator.generate_content(ielts_prompt)
                 
                 # Check if the generated content is related to IELTS
-                section_found = any(section in ielts_prompt for section in selected_sections)
+                section_found = any(str(section) in ielts_prompt for section in selected_sections)
                 if section_found:
                     info_generator.add_heading("IELTS", level=2)
                     info_generator.add_paragraph(ielts_prompt.strip())
