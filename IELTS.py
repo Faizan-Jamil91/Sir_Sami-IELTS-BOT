@@ -139,15 +139,15 @@ if st.button("Generate IELTS Info"):
                 # Generate questions based on selected sections
                 for section in selected_sections:
                     if section == "IELTS":
-                        prompt = ielts_prompt
+                        prompt = ielts_prompt + "IELTS"
                     elif section == "IELTS Reading":
-                        prompt = ielts_prompt
+                        prompt = ielts_prompt + "IELTS Reading"
                     elif section == "IELTS Writing":
-                        prompt = ielts_prompt
+                        prompt = ielts_prompt + "IELTS Writing"
                     elif section == "IELTS Listening":
-                        prompt = ielts_prompt
+                        prompt = ielts_prompt + "IELTS Listening"
                     elif section == "IELTS Speaking":
-                        prompt = ielts_prompt
+                        prompt = ielts_prompt + "IELTS Speaking"
                     else:
                         continue
 
