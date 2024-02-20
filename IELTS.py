@@ -98,7 +98,7 @@ body {
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-st.markdown("<h1 class='title'>Sir Sami Ielts Bot</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='title'>Sir Sami Ielts Expert</h1>", unsafe_allow_html=True)
 
 name = st.text_input("Please enter your full name:")
 email_address = st.text_input("Please enter your email address:")
