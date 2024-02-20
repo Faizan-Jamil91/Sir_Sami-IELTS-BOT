@@ -134,20 +134,34 @@ if st.button("Generate IELTS Info"):
             info_generator.add_paragraph(f"* Phone: {phone}")
 
             try:
-                ielts_prompt = info_generator.generate_content(ielts_prompt)
-                
-                # Check if the generated content is related to IELTS
-                section_found = any(str(section) in ielts_prompt for section in selected_sections)
-                if section_found:
-                    info_generator.add_heading("IELTS", level=2)
+                # Generate questions based on selected sections
+                for section in selected_sections:
+                    if section == "IELTS":
+                        prompt = "Tell me about IELTS."
+                    elif section == "IELTS Reading":
+                        prompt = "Tell me about IELTS Reading."
+                    elif section == "IELTS Writing":
+                        prompt = "Tell me about IELTS Writing."
+                    elif section == "IELTS Listening":
+                        prompt = "Tell me about IELTS Listening."
+                    elif section == "IELTS Speaking":
+                        prompt = "Tell me about IELTS Speaking."
+                    else:
+                        continue
+
+                    ielts_prompt = info_generator.generate_content(prompt)
+                    
+                    # Add generated content to the HTML
+                    info_generator.add_heading(section, level=2)
                     info_generator.add_paragraph(ielts_prompt.strip())
 
-                    ielts_content = info_generator.save_ielts()
-                    st.subheader("Generated IELTS Content")
-                    st.markdown(ielts_content, unsafe_allow_html=True)
-                else:
-                    st.warning("Your data is not related to selected sections.")
+                # Save and display the generated IELTS content
+                ielts_content = info_generator.save_ielts()
+                st.subheader("Generated IELTS Content")
+                st.markdown(ielts_content, unsafe_allow_html=True)
+                
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
+
 
 st.markdown("</div>", unsafe_allow_html=True)
