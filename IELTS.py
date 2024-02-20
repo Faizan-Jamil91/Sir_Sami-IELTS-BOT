@@ -141,13 +141,13 @@ if st.button("Generate IELTS Info"):
                     if section == "IELTS":
                         prompt = "Tell me about IELTS."
                     elif section == "IELTS Reading":
-                        prompt = "Tell me about IELTS Reading."
+                        prompt = "How to practice IELTS Reading?"
                     elif section == "IELTS Writing":
-                        prompt = "Tell me about IELTS Writing."
+                        prompt = "How to practice IELTS Writing?"
                     elif section == "IELTS Listening":
-                        prompt = "Tell me about IELTS Listening."
+                        prompt = "How to practice IELTS Listening?"
                     elif section == "IELTS Speaking":
-                        prompt = "Tell me about IELTS Speaking."
+                        prompt = "How to practice IELTS Speaking?"
                     else:
                         continue
 
@@ -164,7 +164,6 @@ if st.button("Generate IELTS Info"):
                 
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
-
 
 
 st.markdown("</div>", unsafe_allow_html=True)
