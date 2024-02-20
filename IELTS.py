@@ -1,6 +1,7 @@
 import streamlit as st
 import re
 import google.generativeai as genai
+import base64
 
 class ielts_generator:
     def __init__(self):
