@@ -147,7 +147,7 @@ if st.button("Generate IELTS Info"):
                     elif section == "IELTS Listening":
                         prompt = ielts_prompt
                     elif section == "IELTS Speaking":
-                        prompt = "ielts_prompt
+                        prompt = ielts_prompt
                     else:
                         continue
 
