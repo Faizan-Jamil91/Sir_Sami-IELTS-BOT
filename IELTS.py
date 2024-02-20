@@ -96,9 +96,13 @@ body {
 }
 </style>
 """
-logo_html = """
+image_file = open("sir_sami.jpg", "rb")
+image_bytes = image_file.read()
+image_encoded = base64.b64encode(image_bytes).decode()
+
+logo_html = f"""
 <div style='text-align: center;'>
-    <img src='sir_sami.jpg' alt='Sir Sami Logo' style='width: 200px; height: auto;'/>
+    <img src='data:image/jpg;base64,{image_encoded}' alt='Sir Sami Logo' style='width: 200px; height: auto;'/>
 </div>
 """
 st.markdown(logo_html, unsafe_allow_html=True)
@@ -107,7 +111,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 st.markdown("<h1 class='title'>Sir Sami Ielts Expert</h1>", unsafe_allow_html=True)
 
-st.markdown("<h8 class='title'>for more info please contact # 0345-3153330</h8>", unsafe_allow_html=True)
+st.markdown("<h6 class='title'>for more info please contact # 0345-3153330</h6>", unsafe_allow_html=True)
 
 name = st.text_input("Please enter your full name:")
 email_address = st.text_input("Please enter your email address:")
