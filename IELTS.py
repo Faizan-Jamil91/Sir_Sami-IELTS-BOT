@@ -100,7 +100,7 @@ logo_html = """
     <img src='Sir Sami.jpg' alt='Your Logo' style='width: 200px; height: auto;'/>
 </div>
 """
-st.markdown(logo_html, unsafe_allow_html=True
+st.markdown(logo_html, unsafe_allow_html=True)
             
 st.markdown(custom_css, unsafe_allow_html=True)
 
