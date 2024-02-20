@@ -97,7 +97,7 @@ body {
 """
 logo_html = """
 <div style='text-align: center;'>
-    <img src='Sir Sami.jpg' alt='Your Logo' style='width: 200px; height: auto;'/>
+    <img src='Sir_Sami.jpg' alt='Sir Sami Logo' style='width: 200px; height: auto;'/>
 </div>
 """
 st.markdown(logo_html, unsafe_allow_html=True)
