@@ -121,6 +121,10 @@ ielts_prompt = st.text_input("Ask Anything About IELTS")
 sections = ["IELTS", "IELTS Reading", "IELTS Writing", "IELTS Listening", "IELTS Speaking"]
 selected_sections = st.multiselect("Select sections", sections)
 
+questions = {}
+for section in selected_sections:
+    questions[section] = st.text_input(f"Question for {section}")
+
 if st.button("Generate IELTS Info"):
     if not name or not email_address:
         st.warning("Name and email address are required.")
