@@ -95,7 +95,13 @@ body {
 }
 </style>
 """
-
+logo_html = """
+<div style='text-align: center;'>
+    <img src='path_to_your_logo_file' alt='Your Logo' style='width: 200px; height: auto;'/>
+</div>
+"""
+st.markdown(logo_html, unsafe_allow_html=True
+            
 st.markdown(custom_css, unsafe_allow_html=True)
 
 st.markdown("<h1 class='title'>Sir Sami Ielts Expert</h1>", unsafe_allow_html=True)
