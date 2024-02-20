@@ -125,6 +125,8 @@ if st.button("Generate IELTS Info"):
         st.warning("Name and email address are required.")
     elif not validate_email(email_address):
         st.warning("Invalid email format. Please enter a valid email address.")
+    elif not selected_sections:
+        st.warning("Please select at least one section from the options.")
     else:
         with st.spinner("Generating your IELTS information..."):
             info_generator = ielts_generator()
@@ -162,6 +164,7 @@ if st.button("Generate IELTS Info"):
                 
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
+
 
 
 st.markdown("</div>", unsafe_allow_html=True)
