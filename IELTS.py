@@ -116,17 +116,13 @@ st.markdown("<h6 class='title'>for more info please contact # 0345-3153330</h6>"
 name = st.text_input("Please enter your full name:")
 email_address = st.text_input("Please enter your email address:")
 phone = st.text_input("Please enter your phone number (optional):")
-sections = ["IELTS", "IELTS Reading", "IELTS Writing", "IELTS Listening", "IELTS Speaking"]
-selected_sections = st.multiselect("Select sections", sections)
-ielts_prompt = st.text_input("Ask Anything About IELTS")
+ielts_prompt = st.text_input("Ask Anything About IELTS") + "in Ielts"
 
 if st.button("Generate IELTS Info"):
     if not name or not email_address:
         st.warning("Name and email address are required.")
     elif not validate_email(email_address):
         st.warning("Invalid email format. Please enter a valid email address.")
-    elif not selected_sections:
-        st.warning("Please select at least one section from the options.")
     else:
         with st.spinner("Generating your IELTS information..."):
             info_generator = ielts_generator()
@@ -136,34 +132,19 @@ if st.button("Generate IELTS Info"):
             info_generator.add_paragraph(f"* Phone: {phone}")
 
             try:
-                # Generate questions based on selected sections
-                for section in selected_sections:
-                    if section == "IELTS":
-                        prompt = ielts_prompt + "IELTS"
-                    elif section == "IELTS Reading":
-                        prompt = ielts_prompt + "IELTS Reading"
-                    elif section == "IELTS Writing":
-                        prompt = ielts_prompt + "IELTS Writing"
-                    elif section == "IELTS Listening":
-                        prompt = ielts_prompt + "IELTS Listening"
-                    elif section == "IELTS Speaking":
-                        prompt = ielts_prompt + "IELTS Speaking"
-                    else:
-                        continue
-
-                    ielts_prompt = info_generator.generate_content(prompt)
-                    
-                    # Add generated content to the HTML
-                    info_generator.add_heading(section, level=2)
+                ielts_prompt = info_generator.generate_content(ielts_prompt)
+                
+                # Check if the generated content is related to IELTS
+                if "IELTS" in ielts_prompt:
+                    info_generator.add_heading("IELTS", level=2)
                     info_generator.add_paragraph(ielts_prompt.strip())
 
-                # Save and display the generated IELTS content
-                ielts_content = info_generator.save_ielts()
-                st.subheader("Generated IELTS Content")
-                st.markdown(ielts_content, unsafe_allow_html=True)
-                
+                    ielts_content = info_generator.save_ielts()
+                    st.subheader("Generated IELTS Content")
+                    st.markdown(ielts_content, unsafe_allow_html=True)
+                else:
+                    st.warning("Your data is not related to IELTS.")
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
-
 
 st.markdown("</div>", unsafe_allow_html=True)
