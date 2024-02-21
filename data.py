@@ -6,16 +6,21 @@ import re
 
 # Function to fetch data from SQLite database into DataFrame
 def fetch_data_from_database():
-    conn = sqlite3.connect('ielts.db')
-    cursor = conn.cursor()
+    try:
+        conn = sqlite3.connect('ielts.db')
+        cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM user_data")
-    rows = cursor.fetchall()
+        cursor.execute("SELECT * FROM user_data")
+        rows = cursor.fetchall()
 
-    df = pd.DataFrame(rows, columns=[desc[0] for desc in cursor.description])
+        df = pd.DataFrame(rows, columns=[desc[0] for desc in cursor.description])
 
-    conn.close()
-    return df
+        conn.close()
+        return df
+    except sqlite3.Error as e:
+        print("SQLite error:", e)
+        return None
+
 
 # Function to import data from CSV file into DataFrame
 def import_data_from_csv(csv_file):
