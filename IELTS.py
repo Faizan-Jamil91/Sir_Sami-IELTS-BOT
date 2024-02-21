@@ -119,6 +119,7 @@ st.markdown("<h1 class='title'>Sir Sami Ielts Expert</h1>", unsafe_allow_html=Tr
 st.markdown("<h6 class='title'>for more info please contact # 0345-3153330</h6>", unsafe_allow_html=True)
 
 # Connect to SQLite database (replace 'your_database.db' with your actual database file)
+conn = sqlite3.connect(os.environ['DATABASE_URL'])
 conn = sqlite3.connect('ielts.db')
 cursor = conn.cursor()
 
