@@ -4,6 +4,9 @@ import google.generativeai as genai
 import base64
 import sqlite3
 
+current_directory = os.path.dirname(os.path.realpath(__file__))
+os.chdir(current_directory)
+
 class ielts_generator:
     def __init__(self):
         self.ielts_content = "<html><head><style>body {font-family: Arial, sans-serif;}</style></head><body>"
