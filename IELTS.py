@@ -2,6 +2,7 @@ import streamlit as st
 import re
 import google.generativeai as genai
 import base64
+import sqlite3
 
 class ielts_generator:
     def __init__(self):
@@ -59,6 +60,7 @@ def validate_email(email):
     email_regex = r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$"
     return bool(re.match(email_regex, email))
 
+
 # Custom CSS
 custom_css = """
 <style>
@@ -113,6 +115,18 @@ st.markdown("<h1 class='title'>Sir Sami Ielts Expert</h1>", unsafe_allow_html=Tr
 
 st.markdown("<h6 class='title'>for more info please contact # 0345-3153330</h6>", unsafe_allow_html=True)
 
+# Connect to SQLite database (replace 'your_database.db' with your actual database file)
+conn = sqlite3.connect('ielts.db')
+cursor = conn.cursor()
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS user_data (
+                    id INTEGER PRIMARY KEY,
+                    name TEXT,
+                    email TEXT,
+                    phone TEXT
+                )''')
+conn.commit()
+
 name = st.text_input("Please enter your full name:")
 email_address = st.text_input("Please enter your email address:")
 phone = st.text_input("Please enter your phone number (optional):")
@@ -142,9 +156,18 @@ if st.button("Generate IELTS Info"):
                     ielts_content = info_generator.save_ielts()
                     st.subheader("Generated IELTS Content")
                     st.markdown(ielts_content, unsafe_allow_html=True)
+
+                    # Insert user data into the database
+                    cursor.execute("INSERT INTO user_data (name, email, phone) VALUES (?, ?, ?)",
+                                   (name, email_address, phone))
+                    conn.commit()
+                    st.success("Form Submitted Sucessfully")
                 else:
                     st.warning("Your data is not related to IELTS.")
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
+
+# Close the database connection
+conn.close()
 
 st.markdown("</div>", unsafe_allow_html=True)
